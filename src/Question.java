@@ -8,41 +8,28 @@
  * @author ziche
  */
 public class Question {
-    private String question;
-    private Option[] possibleAnswers;
-    private int correntAnswerIndex;
-    public Question(String question, Option[] possibleAnswers, int correntAnswerIndex){
-        this.question = question;
-        this.possibleAnswers = possibleAnswers;
-        this.correntAnswerIndex = correntAnswerIndex;
+    private String q;
+    private int qNum;
+    public Question(String q, int qNum){
+        this.q = q;
+        this.qNum = qNum;
     }
     //Getter and setter methods for the variables in this class
-    public String getQuestion(){
-        return question;
+    public String getQ(){
+        return q;
     }
-    public void setQuestion(String question){
-        this.question = question;
+    public void setQ(String q){
+        this.q = q;
     }
-    public Option[] getPossibleAnswers(){
-        return possibleAnswers;
+    public int getQNum(){
+        return qNum;
     }
-    public void setPossibleAnswers(Option[] possibleAnswers){
-        this.possibleAnswers = possibleAnswers;
-    }
-    public int getCorrentAnswerIndex(){
-        return correntAnswerIndex;
-    }
-    public void setCorrentAnswerIndex(int correntAnswerIndex){
-        this.correntAnswerIndex = correntAnswerIndex;
+    public void setQNum(int qNum){
+        this.qNum = qNum;
     }
     //toString method for this class
     @Override
     public String toString(){
-        String returnString = "";
-        for (Option x: possibleAnswers){
-            returnString += "," + x.toString();
-        }
-        returnString += question + correntAnswerIndex;
-        return returnString;
+        return qNum + "# :" + q ;
     }
 }
