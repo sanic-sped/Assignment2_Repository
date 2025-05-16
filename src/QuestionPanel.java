@@ -31,7 +31,7 @@ public class QuestionPanel extends javax.swing.JFrame {
         back = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        message = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,7 +48,7 @@ public class QuestionPanel extends javax.swing.JFrame {
 
         jButton3.setText("Fake");
 
-        jLabel2.setText("Placeholder reason & sources");
+        message.setText("Placeholder reason & sources");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,7 +71,7 @@ public class QuestionPanel extends javax.swing.JFrame {
                         .addGap(0, 68, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(message, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -84,7 +84,7 @@ public class QuestionPanel extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+                .addComponent(message, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(back)
                 .addContainerGap())
@@ -93,6 +93,13 @@ public class QuestionPanel extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    Question q1 = new Question("Common methods used in fake news include the manipulation of emotions, "
+            + "impersonation, and the use of technology(AI).", 1);
+    Question q2 = new Question("Disney question", 2); //Start from here
+    
+    /*if (Question instanceof Fake_news)
+        message.setText(getFailMsg);*/
+        
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
         new TitlePanel().setVisible(true);
@@ -140,6 +147,6 @@ public class QuestionPanel extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel message;
     // End of variables declaration//GEN-END:variables
 }

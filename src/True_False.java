@@ -7,10 +7,10 @@
  *
  * @author ziche
  */
-public class True_News extends Question{
+public class True_False extends Question{
     private String successMsg;
     private String failMsg;
-    public True_News(String q, int qNum, String successMsg, String failMsg){
+    public True_False(String q, int qNum, String successMsg, String failMsg){
         super(q, qNum);
         this.successMsg = successMsg;
         this.failMsg = failMsg;

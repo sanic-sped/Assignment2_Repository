@@ -7,10 +7,10 @@
  *
  * @author ziche
  */
-public class Fake_News extends Question{
+public class Multiple_Choice extends Question{
     private String successMsg;
     private String failMsg;
-    public Fake_News(String q, int qNum, String successMsg, String failMsg){
+    public Multiple_Choice(String q, int qNum, String successMsg, String failMsg){
         super(q, qNum);
         this.successMsg = successMsg;
         this.failMsg = failMsg;
