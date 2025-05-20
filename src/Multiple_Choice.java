@@ -8,16 +8,18 @@
  * @author ziche
  */
 public class Multiple_Choice extends Question{
-    private String successMsg;
-    private String failMsg;
-    public Multiple_Choice(String q, int qNum, String successMsg, String failMsg){
+    private String headline;
+    private String[] choices;
+    private String correctChoiceIndex;
+    public Multiple_Choice(String q, int qNum, String headline, boolean isFake, String[] choices){
         super(q, qNum);
-        this.successMsg = successMsg;
-        this.failMsg = failMsg;
+        this.headline = headline;
+        this.isFake = isFake;
+        this.choices = choices;
     }
     //Getter and setter methods for the variables in this class
-    public String getsuccessMsg(){
-        return successMsg;
+    public String getHeadline(){
+        return headline;
     }
     public void setsuccessMsg(String successMsg){
         this.successMsg = successMsg;

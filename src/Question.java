@@ -10,6 +10,8 @@
 public class Question {
     private String q;
     private int qNum;
+    private String headline;
+    boolean isFake;
     public Question(String q, int qNum){
         this.q = q;
         this.qNum = qNum;
