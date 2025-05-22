@@ -92,14 +92,7 @@ public class QuestionPanel extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    Question q1 = new Question("Common methods used in fake news include the manipulation of emotions, "
-            + "impersonation, and the use of technology(AI).", 1);
-    Question q2 = new Question("Disney question", 2); //Start from here
-    
-    /*if (Question instanceof Fake_news)
-        message.setText(getFailMsg);*/
-        
+  
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
         new TitlePanel().setVisible(true);
@@ -133,7 +126,11 @@ public class QuestionPanel extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+        //Generic MC and T/F questions ; do ALL of them like this
+        Question[] questions = new Question[2];
+        String[] testMC = {"Choice 1", "Choice 2", "Choice 3", "Choice 4"};
+        questions[1] = new Multiple_Choice("Test MC", 1, "headline", false, testMC, 2);
+        questions[2] = new True_False("Test T/F", 2, "headline", true, true);
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

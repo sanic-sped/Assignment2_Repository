@@ -8,31 +8,33 @@
  * @author ziche
  */
 public class Multiple_Choice extends Question{
-    private String headline;
     private String[] choices;
-    private String correctChoiceIndex;
-    public Multiple_Choice(String q, int qNum, String headline, boolean isFake, String[] choices){
-        super(q, qNum);
-        this.headline = headline;
-        this.isFake = isFake;
+    private int answerIndex;
+    public Multiple_Choice(String q, int qNum, String headline, boolean isFake, String[] choices, int answerIndex){
+        super(q, qNum, headline, isFake);
         this.choices = choices;
+        this.answerIndex = answerIndex;
     }
     //Getter and setter methods for the variables in this class
-    public String getHeadline(){
-        return headline;
+    public String[] getChoices(){
+        return choices;
     }
-    public void setsuccessMsg(String successMsg){
-        this.successMsg = successMsg;
+    public void setChoices(String[] choices){
+        this.choices = choices;
     }
-    public String getfailMsg(){
-        return failMsg;
+    public int getanswerIndex(){
+        return answerIndex;
     }
-    public void setfailMsg(String failMsg){
-        this.failMsg = failMsg;
+    public void setcorrectChoiceIndex(int answerIndex){
+        this.answerIndex = answerIndex;
     }
     //toString method for this class
     @Override
     public String toString(){
-        return super.getQNum() + "," + super.getQ() + "," + ",Fake," + successMsg + "," + failMsg;
+        String returnString = "";
+        for (String x: choices)
+            returnString += x;
+        returnString += answerIndex;
+        return super.toString() + " " + returnString;
     }
 }

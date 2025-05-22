@@ -11,10 +11,12 @@ public class Question {
     private String q;
     private int qNum;
     private String headline;
-    boolean isFake;
-    public Question(String q, int qNum){
+    private boolean isFake;
+    public Question(String q, int qNum, String headline, boolean isFake){
         this.q = q;
         this.qNum = qNum;
+        this.headline = headline;
+        this.isFake = isFake;
     }
     //Getter and setter methods for the variables in this class
     public String getQ(){
@@ -29,9 +31,21 @@ public class Question {
     public void setQNum(int qNum){
         this.qNum = qNum;
     }
+    public String getHeadline(){
+        return headline;
+    }
+    public void setHeadline(String headline){
+        this.headline = headline;
+    }
+    public boolean getIsFake(){
+        return isFake;
+    }
+    public void setIsFake(boolean isFake){
+        this.isFake = isFake;
+    }
     //toString method for this class
     @Override
     public String toString(){
-        return qNum + "# :" + q ;
+        return q + " " + qNum + " " + headline + " " + isFake;
     }
 }

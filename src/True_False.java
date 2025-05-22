@@ -8,29 +8,21 @@
  * @author ziche
  */
 public class True_False extends Question{
-    private String headline;
     private boolean answer;
-    public True_False(String q, int qNum, String headline, boolean isFake){
-        super(q, qNum);
-        this.headline = headline;
-        this.isFake = isFake;
+    public True_False(String q, int qNum, String headline, boolean isFake, boolean answer){
+        super(q, qNum, headline, isFake);
+        this.answer = answer;
     }
     //Getter and setter methods for the variables in this class
-    public String getHeadline(){
-        return headline;
-    }
-    public void setHeadline(String headline){
-        this.headline = headline;
-    }
-    public boolean getAnswer (){
+    public boolean getAnswer(){
         return answer;
     }
-    public void setAnswer(boolean isFake){
+    public void setAnswer(boolean answer){
         this.answer = answer;
     }
     //toString method for this class
     @Override
     public String toString(){
-        return super.getQNum() + "," + super.getQ() + "," + ",True," + headline + "," + answer;
+        return super.toString() + " " + answer;
     }
 }
