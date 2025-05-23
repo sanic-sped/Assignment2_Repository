@@ -209,7 +209,7 @@ public class QuestionPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_option4ActionPerformed
 
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
-        if (currentQIndex < questions.length){
+        if (currentQIndex + 1 < questions.length){
             currentQIndex++;
             question.setText(questions[currentQIndex].getQ());
             if (questions[currentQIndex] instanceof Multiple_Choice){
