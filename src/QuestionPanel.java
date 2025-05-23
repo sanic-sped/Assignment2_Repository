@@ -9,13 +9,40 @@
  * @version 1.0
  * @since 05-13-2025
  */
-public class QuestionPanel extends javax.swing.JFrame {
 
+// Import libraries
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowAdapter;
+
+public class QuestionPanel extends javax.swing.JFrame {
+    private Question[] questions = new Question[2];
+    private int currentQIndex = 0;
     /**
      * Creates new form Question
      */
     public QuestionPanel() {
         initComponents();
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowActivated(WindowEvent e) {
+                String[] testMC = {"Choice 1", "Choice 2", "Choice 3", "Choice 4"};
+                questions[0] = new Multiple_Choice("Test MC", 1, "headline", false, testMC, 2);
+                questions[1] = new True_False("Test T/F", 2, "headline", true, true);
+                question.setText(questions[0].getQ());
+                if (questions[0] instanceof Multiple_Choice){
+                    option1.setText(((Multiple_Choice) questions[0]).getChoices()[0]);
+                    option2.setText(((Multiple_Choice) questions[0]).getChoices()[1]);
+                    option3.setText(((Multiple_Choice) questions[0]).getChoices()[2]);
+                    option4.setText(((Multiple_Choice) questions[0]).getChoices()[3]);
+                } else if (questions[0] instanceof True_False){
+                    option1.setVisible(false);
+                    option2.setText("True");
+                    option3.setText("False");
+                    option4.setVisible(false);
+                }
+                next.setVisible(false);
+            }
+        });
     }
 
     /**
@@ -27,15 +54,18 @@ public class QuestionPanel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        question = new javax.swing.JLabel();
         back = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        option2 = new javax.swing.JButton();
+        option3 = new javax.swing.JButton();
         message = new javax.swing.JLabel();
+        option1 = new javax.swing.JButton();
+        option4 = new javax.swing.JButton();
+        next = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Question #0: A placeholder");
+        question.setText("Question #0: A placeholder");
 
         back.setText("Back to Title");
         back.addActionListener(new java.awt.event.ActionListener() {
@@ -44,49 +74,84 @@ public class QuestionPanel extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("True");
+        option2.setText("option2");
+        option2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                option2ActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Fake");
+        option3.setText("option3");
+        option3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                option3ActionPerformed(evt);
+            }
+        });
 
         message.setText("Placeholder reason & sources");
+
+        option1.setText("option1");
+        option1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                option1ActionPerformed(evt);
+            }
+        });
+
+        option4.setText("option4");
+        option4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                option4ActionPerformed(evt);
+            }
+        });
+
+        next.setText("Next Question");
+        next.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(question, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(message, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(back)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(back)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(next))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(jButton2)
+                        .addComponent(option1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
-                        .addGap(0, 68, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(message, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(option2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(option3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(option4)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(question, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(option2)
+                    .addComponent(option3)
+                    .addComponent(option1)
+                    .addComponent(option4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(message, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(back)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(back)
+                    .addComponent(next))
                 .addContainerGap())
         );
 
@@ -98,6 +163,72 @@ public class QuestionPanel extends javax.swing.JFrame {
         new TitlePanel().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
+
+    private void option1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option1ActionPerformed
+        if (questions[currentQIndex] instanceof Multiple_Choice){
+            if (((Multiple_Choice) questions[currentQIndex]).getanswerIndex() == 0){
+                message.setText("");
+            } else {
+                message.setText("");
+            }
+        }
+        next.setVisible(true);
+    }//GEN-LAST:event_option1ActionPerformed
+
+    private void option2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option2ActionPerformed
+        if (questions[currentQIndex] instanceof Multiple_Choice){
+            if (((Multiple_Choice) questions[currentQIndex]).getanswerIndex() == 1){
+                message.setText("");
+            } else {
+                message.setText("");
+            }
+        }
+        next.setVisible(true);
+    }//GEN-LAST:event_option2ActionPerformed
+
+    private void option3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option3ActionPerformed
+        if (questions[currentQIndex] instanceof Multiple_Choice){
+            if (((Multiple_Choice) questions[currentQIndex]).getanswerIndex() == 2){
+                message.setText("");
+            } else {
+                message.setText("");
+            }
+        }
+        next.setVisible(true);
+    }//GEN-LAST:event_option3ActionPerformed
+
+    private void option4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option4ActionPerformed
+        if (questions[currentQIndex] instanceof Multiple_Choice){
+            if (((Multiple_Choice) questions[currentQIndex]).getanswerIndex() == 3){
+                message.setText("");
+            } else {
+                message.setText("");
+            }
+        }
+        next.setVisible(true);
+    }//GEN-LAST:event_option4ActionPerformed
+
+    private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
+        if (currentQIndex < questions.length){
+            currentQIndex++;
+            question.setText(questions[currentQIndex].getQ());
+            if (questions[currentQIndex] instanceof Multiple_Choice){
+                option1.setText(((Multiple_Choice) questions[currentQIndex]).getChoices()[0]);
+                option2.setText(((Multiple_Choice) questions[currentQIndex]).getChoices()[1]);
+                option3.setText(((Multiple_Choice) questions[currentQIndex]).getChoices()[2]);
+                option4.setText(((Multiple_Choice) questions[currentQIndex]).getChoices()[3]);
+            } else if (questions[currentQIndex] instanceof True_False){
+                option1.setVisible(false);
+                option2.setText("True");
+                option3.setText("False");
+                option4.setVisible(false);
+            }
+            next.setVisible(false);
+        } else {
+            new TitlePanel().setVisible(true);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_nextActionPerformed
 
     /**
      * @param args the command line arguments
@@ -126,11 +257,6 @@ public class QuestionPanel extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        //Generic MC and T/F questions ; do ALL of them like this
-        Question[] questions = new Question[2];
-        String[] testMC = {"Choice 1", "Choice 2", "Choice 3", "Choice 4"};
-        questions[1] = new Multiple_Choice("Test MC", 1, "headline", false, testMC, 2);
-        questions[2] = new True_False("Test T/F", 2, "headline", true, true);
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -141,9 +267,12 @@ public class QuestionPanel extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel message;
+    private javax.swing.JButton next;
+    private javax.swing.JButton option1;
+    private javax.swing.JButton option2;
+    private javax.swing.JButton option3;
+    private javax.swing.JButton option4;
+    private javax.swing.JLabel question;
     // End of variables declaration//GEN-END:variables
 }
