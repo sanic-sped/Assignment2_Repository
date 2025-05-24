@@ -16,11 +16,14 @@ public class Score {
         this.region = region;
         this.value = value;
     }
+    public Score(){
+        this("", "", 0);
+    }
     //Getter and setter methods for the variables in this class
     public String getName(){
         return name;
     }
-    public void setQ(String q){
+    public void setName(String name){
         this.name = name;
     }
     public String getRegion(){
