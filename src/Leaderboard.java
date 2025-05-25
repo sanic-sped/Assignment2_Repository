@@ -68,9 +68,9 @@ public class Leaderboard {
         return out;
     }
     public void writeNewScore(Score newScore){
-        try (FileWriter w = new FileWriter("leaderboard.txt", true)){
+        try (FileWriter w = new FileWriter(new File("leaderboard.txt"), true)){
             PrintWriter write = new PrintWriter(w);
-            write.printf("%s,%s,%s", newScore.getName(), newScore.getRegion(), newScore.getValue());
+            write.printf("%s,%s,%s\n", newScore.getName(), newScore.getRegion(), newScore.getValue());
             Score[] newUserScores = new Score[this.getUserScores().length + 1];
             for (int i = 0; i < this.getUserScores().length; i++){
                 newUserScores[i] = this.getUserScores()[i];

@@ -16,7 +16,7 @@ import java.awt.event.WindowAdapter;
 
 public class QuestionPanel extends javax.swing.JFrame {
     // This is the number of questions, set to the number of questions
-    public final static int NUMQUESTIONS = 0;
+    public final static int NUMQUESTIONS = 4;
     //This is the array to store all the questions
     private Question[] questions = new Question[NUMQUESTIONS];
     private int currentQIndex = 0;
