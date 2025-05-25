@@ -15,7 +15,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowAdapter;
 
 public class QuestionPanel extends javax.swing.JFrame {
-    private Question[] questions = new Question[2];
+    private Question[] questions = new Question[4];
     private int currentQIndex = 0;
     /**
      * Creates new form Question
@@ -25,9 +25,14 @@ public class QuestionPanel extends javax.swing.JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowActivated(WindowEvent e) {
-                String[] testMC = {"Choice 1", "Choice 2", "Choice 3", "Choice 4"};
-                questions[0] = new Multiple_Choice("Test MC", 1, "headline", false, testMC, 2);
-                questions[1] = new True_False("Test T/F", 2, "headline", true, true);
+                String[] testMC = {"It cites multiple reputable scientific journals", 
+                    "It uses vague language like \"scientists say\" without naming them", 
+                    "It was published on a well-known medical journal's website", 
+                    "It includes interviews with licensed oncologists"};
+                questions[0] = new Multiple_Choice("\"Scientists discover that drinking 10 cups of coffee a day cures cancer\"", 1, "headline", false, testMC, 2);
+                questions[1] = new True_False("\"NASA Confirms Earth Will Go Dark for 6 Days in November Due to Solar Storm\"", 2, "headline", true, true);
+                questions[2] = new Multiple_Choice("\"Local Man Wins Lottery Twice in One Week Using the Same Numbers\"", 3, "headline", false, testMC, 2);
+                questions[3] = new True_False("\"Doctors Say Eating Ice Cream for Breakfast Improves Mental Performance\"", 4, "headline", true, true);
                 question.setText(questions[0].getQ());
                 if (questions[0] instanceof Multiple_Choice){
                     option1.setText(((Multiple_Choice) questions[0]).getChoices()[0]);
@@ -65,7 +70,7 @@ public class QuestionPanel extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        question.setText("Question #0: A placeholder");
+        question.setText("\"Scientists discover that drinking 10 cups of coffee a day cures cancer.\" ");
 
         back.setText("Back to Title");
         back.addActionListener(new java.awt.event.ActionListener() {
@@ -74,14 +79,14 @@ public class QuestionPanel extends javax.swing.JFrame {
             }
         });
 
-        option2.setText("option2");
+        option2.setText("Choice 2");
         option2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 option2ActionPerformed(evt);
             }
         });
 
-        option3.setText("option3");
+        option3.setText("Choice 3");
         option3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 option3ActionPerformed(evt);
@@ -90,14 +95,14 @@ public class QuestionPanel extends javax.swing.JFrame {
 
         message.setText("Placeholder reason & sources");
 
-        option1.setText("option1");
+        option1.setText("Choice 1");
         option1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 option1ActionPerformed(evt);
             }
         });
 
-        option4.setText("option4");
+        option4.setText("Choice 4");
         option4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 option4ActionPerformed(evt);
@@ -118,21 +123,19 @@ public class QuestionPanel extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(question, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(message, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(question, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(option1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(option2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(option3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(option4)
-                        .addGap(0, 82, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(back)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(next)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(option2)
+                            .addComponent(option1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(back)
+                                .addGap(18, 18, 18)
+                                .addComponent(next))
+                            .addComponent(option3)
+                            .addComponent(option4)
+                            .addComponent(message, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -141,14 +144,16 @@ public class QuestionPanel extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(question, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(option2)
-                    .addComponent(option3)
-                    .addComponent(option1)
-                    .addComponent(option4))
+                .addComponent(option1)
+                .addGap(7, 7, 7)
+                .addComponent(option2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(message, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(option3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(option4)
+                .addGap(37, 37, 37)
+                .addComponent(message, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(back)
                     .addComponent(next))
@@ -169,7 +174,7 @@ public class QuestionPanel extends javax.swing.JFrame {
             if (((Multiple_Choice) questions[currentQIndex]).getanswerIndex() == 0){
                 message.setText("");
             } else {
-                message.setText("");
+                message.setText("Incorrect. The answer is: B, fake news often uses vague or anonymous sources to sound credible without evidence.");
             }
         }
         next.setVisible(true);
@@ -180,7 +185,7 @@ public class QuestionPanel extends javax.swing.JFrame {
             if (((Multiple_Choice) questions[currentQIndex]).getanswerIndex() == 1){
                 message.setText("");
             } else {
-                message.setText("");
+                message.setText("correct");
             }
         }
         next.setVisible(true);
@@ -189,7 +194,7 @@ public class QuestionPanel extends javax.swing.JFrame {
     private void option3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option3ActionPerformed
         if (questions[currentQIndex] instanceof Multiple_Choice){
             if (((Multiple_Choice) questions[currentQIndex]).getanswerIndex() == 2){
-                message.setText("");
+                message.setText("Incorrect. The answer is: B, fake news often uses vague or anonymous sources to sound credible without evidence.");
             } else {
                 message.setText("");
             }
@@ -200,9 +205,9 @@ public class QuestionPanel extends javax.swing.JFrame {
     private void option4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option4ActionPerformed
         if (questions[currentQIndex] instanceof Multiple_Choice){
             if (((Multiple_Choice) questions[currentQIndex]).getanswerIndex() == 3){
-                message.setText("");
+                message.setText("It includes interviews with licensed oncologists");
             } else {
-                message.setText("");
+                message.setText("Incorrect. The answer is: B, fake news often uses vague or anonymous sources to sound credible without evidence.");
             }
         }
         next.setVisible(true);
