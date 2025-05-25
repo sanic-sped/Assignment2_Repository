@@ -10,8 +10,8 @@
 public class Multiple_Choice extends Question{
     private String[] choices;
     private int answerIndex;
-    public Multiple_Choice(String q, int qNum, String headline, boolean isFake, String[] choices, int answerIndex){
-        super(q, qNum, headline, isFake);
+    public Multiple_Choice(String q, int qNum, String headline, boolean isFake, String[] choices, int answerIndex, String successMessage, String failMessage){
+        super(q, qNum, headline, isFake, successMessage, failMessage);
         this.choices = choices;
         this.answerIndex = answerIndex;
     }

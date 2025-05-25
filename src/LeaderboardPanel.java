@@ -12,7 +12,7 @@ import java.awt.event.WindowEvent;
  * @author ziche
  */
 public class LeaderboardPanel extends javax.swing.JFrame {
-    public Leaderboard leaderboard = new Leaderboard();
+    public static Leaderboard leaderboard = new Leaderboard();
     /**
      * Creates new form LeaderboardPanel
      */
@@ -21,9 +21,9 @@ public class LeaderboardPanel extends javax.swing.JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowActivated(WindowEvent e) {
-                String out = String.format("%-20s,%-20s,%-20s", "Name:", "Region:", "Score:");
+                String out = String.format("%-45s%-45s%-45s", "Name:", "Region:", "Score:");
                 for (Score score : leaderboard.getUserScores()){
-                    out += String.format("\n%-20s,%-20s,%-20s", score.getName(), score.getRegion(), score.getValue());
+                    out += String.format("\n%-45s%-45s%-45s", score.getName(), score.getRegion(), score.getValue());
                 }
                 leaderboardDisplay.setText(out);
             }
@@ -42,21 +42,21 @@ public class LeaderboardPanel extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         leaderboardDisplay = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Leaderboard");
 
         leaderboardDisplay.setColumns(20);
         leaderboardDisplay.setRows(5);
         jScrollPane1.setViewportView(leaderboardDisplay);
 
-        jButton1.setText("Back to Title");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        back.setText("Back to Title");
+        back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                backActionPerformed(evt);
             }
         });
 
@@ -65,17 +65,18 @@ public class LeaderboardPanel extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1))
+                        .addComponent(back))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(187, 187, 187)
+                        .addComponent(jLabel1)))
+                .addContainerGap(213, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -83,20 +84,20 @@ public class LeaderboardPanel extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(back)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
         new TitlePanel().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_backActionPerformed
     
     /**
      * @param args the command line arguments
@@ -134,7 +135,7 @@ public class LeaderboardPanel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton back;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea leaderboardDisplay;

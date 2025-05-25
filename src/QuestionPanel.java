@@ -15,8 +15,13 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowAdapter;
 
 public class QuestionPanel extends javax.swing.JFrame {
-    private Question[] questions = new Question[4];
+    // This is the number of questions, set to the number of questions
+    public final static int NUMQUESTIONS = 0;
+    //This is the array to store all the questions
+    private Question[] questions = new Question[NUMQUESTIONS];
     private int currentQIndex = 0;
+    private boolean answerCorrect;
+    public static int score;
     /**
      * Creates new form Question
      */
@@ -25,14 +30,26 @@ public class QuestionPanel extends javax.swing.JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowActivated(WindowEvent e) {
+                /**
+                 * To make a multiple choice question:
+                 * 1. make an array of type String and put all of your options into there
+                 * 2. initialize a Multiple_Choice object at the index of the question your making
+                 * 3. enter your data ; for order, look at the constructor class in Multiple_Choice.java
+                 * 
+                 * To make a true or false question:
+                 * 1. initialize a Multiple_Choice object at the index of the question your making
+                 * 2. enter your data ; for order, look at the constructor class in True_False.java
+                 * 
+                 * I'd recommend storing all the success and fail messages into two arrays
+                 */
                 String[] testMC = {"It cites multiple reputable scientific journals", 
                     "It uses vague language like \"scientists say\" without naming them", 
                     "It was published on a well-known medical journal's website", 
                     "It includes interviews with licensed oncologists"};
-                questions[0] = new Multiple_Choice("\"Scientists discover that drinking 10 cups of coffee a day cures cancer\"", 1, "headline", false, testMC, 2);
-                questions[1] = new True_False("\"NASA Confirms Earth Will Go Dark for 6 Days in November Due to Solar Storm\"", 2, "headline", true, true);
-                questions[2] = new Multiple_Choice("\"Local Man Wins Lottery Twice in One Week Using the Same Numbers\"", 3, "headline", false, testMC, 2);
-                questions[3] = new True_False("\"Doctors Say Eating Ice Cream for Breakfast Improves Mental Performance\"", 4, "headline", true, true);
+                questions[0] = new Multiple_Choice("\"Scientists discover that drinking 10 cups of coffee a day cures cancer\"", 1, "headline", false, testMC, 2, "correct", "false");
+                questions[1] = new True_False("\"NASA Confirms Earth Will Go Dark for 6 Days in November Due to Solar Storm\"", 2, "headline", true, true, "correct", "false");
+                questions[2] = new Multiple_Choice("\"Local Man Wins Lottery Twice in One Week Using the Same Numbers\"", 3, "headline", false, testMC, 2, "correct", "false");
+                questions[3] = new True_False("\"Doctors Say Eating Ice Cream for Breakfast Improves Mental Performance\"", 4, "headline", true, true, "correct", "false");
                 question.setText(questions[0].getQ());
                 if (questions[0] instanceof Multiple_Choice){
                     option1.setText(((Multiple_Choice) questions[0]).getChoices()[0]);
@@ -123,7 +140,7 @@ public class QuestionPanel extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(question, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
+                    .addComponent(question, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(option2)
@@ -153,7 +170,7 @@ public class QuestionPanel extends javax.swing.JFrame {
                 .addComponent(option4)
                 .addGap(37, 37, 37)
                 .addComponent(message, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(back)
                     .addComponent(next))
@@ -164,56 +181,108 @@ public class QuestionPanel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
   
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        // TODO add your handling code here:
         new TitlePanel().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
 
     private void option1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option1ActionPerformed
-        if (questions[currentQIndex] instanceof Multiple_Choice){
-            if (((Multiple_Choice) questions[currentQIndex]).getanswerIndex() == 0){
-                message.setText("");
+        //If the currect question object is an instance of Multiple_Choice
+        if (questions[currentQIndex] instanceof Multiple_Choice current_question){
+            //If the answerIndex is 0 (if this option is correct)
+            if (current_question.getanswerIndex() == 0){
+                //Display success message
+                message.setText(current_question.getSuccessMessage());
+                answerCorrect = true;
             } else {
-                message.setText("Incorrect. The answer is: B, fake news often uses vague or anonymous sources to sound credible without evidence.");
+                //Display fail message
+                message.setText(current_question.getFailMessage());
+                answerCorrect = false;
             }
         }
         next.setVisible(true);
     }//GEN-LAST:event_option1ActionPerformed
 
     private void option2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option2ActionPerformed
-        if (questions[currentQIndex] instanceof Multiple_Choice){
-            if (((Multiple_Choice) questions[currentQIndex]).getanswerIndex() == 1){
-                message.setText("");
+        //If the currect question object is an instance of Multiple_Choice
+        if (questions[currentQIndex] instanceof Multiple_Choice current_question){
+            //If the answerIndex is 0 (if this option is correct)
+            if (current_question.getanswerIndex() == 1){
+                //Display success message
+                message.setText(current_question.getSuccessMessage());
+                answerCorrect = true;
             } else {
-                message.setText("correct");
+                //Display fail message
+                message.setText(current_question.getFailMessage());
+                answerCorrect = false;
+            }
+        } 
+        //If the currect question object is an instance of True_False
+        else if (questions[currentQIndex] instanceof True_False current_question){
+            //If the answer is true (if this option is correct)
+            if (current_question.getAnswer() == true){
+                //Display success message
+                message.setText(current_question.getSuccessMessage());
+                answerCorrect = true;
+            } else {
+                //Display fail message
+                message.setText(current_question.getFailMessage());
+                answerCorrect = false;
             }
         }
         next.setVisible(true);
     }//GEN-LAST:event_option2ActionPerformed
 
     private void option3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option3ActionPerformed
-        if (questions[currentQIndex] instanceof Multiple_Choice){
-            if (((Multiple_Choice) questions[currentQIndex]).getanswerIndex() == 2){
-                message.setText("Incorrect. The answer is: B, fake news often uses vague or anonymous sources to sound credible without evidence.");
+        //If the currect question object is an instance of Multiple_Choice
+        if (questions[currentQIndex] instanceof Multiple_Choice current_question){
+            //If the answerIndex is 0 (if this option is correct)
+            if (current_question.getanswerIndex() == 2){
+                //Display success message
+                message.setText(current_question.getSuccessMessage());
+                answerCorrect = true;
             } else {
-                message.setText("");
+                //Display fail message
+                message.setText(current_question.getFailMessage());
+                answerCorrect = false;
+            }
+        } 
+        //If the currect question object is an instance of True_False
+        else if (questions[currentQIndex] instanceof True_False current_question){
+            //If the answer is false (if this option is correct)
+            if (current_question.getAnswer() == false){
+                //Display success message
+                message.setText(current_question.getSuccessMessage());
+                answerCorrect = true;
+            } else {
+                //Display fail message
+                message.setText(current_question.getFailMessage());
+                answerCorrect = false;
             }
         }
         next.setVisible(true);
     }//GEN-LAST:event_option3ActionPerformed
 
     private void option4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option4ActionPerformed
-        if (questions[currentQIndex] instanceof Multiple_Choice){
-            if (((Multiple_Choice) questions[currentQIndex]).getanswerIndex() == 3){
-                message.setText("It includes interviews with licensed oncologists");
+        //If the currect question object is an instance of Multiple_Choice
+        if (questions[currentQIndex] instanceof Multiple_Choice current_question){
+            //If the answerIndex is 0 (if this option is correct)
+            if (current_question.getanswerIndex() == 3){
+                //Display success message
+                message.setText(current_question.getSuccessMessage());
+                answerCorrect = true;
             } else {
-                message.setText("Incorrect. The answer is: B, fake news often uses vague or anonymous sources to sound credible without evidence.");
+                //Display fail message
+                message.setText(current_question.getFailMessage());
+                answerCorrect = false;
             }
         }
         next.setVisible(true);
     }//GEN-LAST:event_option4ActionPerformed
 
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
+        if (answerCorrect){
+            score++;
+        }
         if (currentQIndex + 1 < questions.length){
             currentQIndex++;
             question.setText(questions[currentQIndex].getQ());
@@ -230,7 +299,7 @@ public class QuestionPanel extends javax.swing.JFrame {
             }
             next.setVisible(false);
         } else {
-            new TitlePanel().setVisible(true);
+            new EndPanel().setVisible(true);
             this.setVisible(false);
         }
     }//GEN-LAST:event_nextActionPerformed
