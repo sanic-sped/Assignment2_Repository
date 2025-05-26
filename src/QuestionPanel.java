@@ -55,7 +55,7 @@ public class QuestionPanel extends javax.swing.JFrame {
                 questions[1] = new True_False("<html>\"NASA Confirms Earth Will Go Dark for 6 Days in November Due to Solar Storm\" <br/> True or False: NASA regularly issues warnings that Earth will be completely dark for several days.",
                         2, "headline", true, false, "correct", "<html>This is a recurring fake news claim. NASA has repeatedly debunked such <br/> rumors.</html>");
                 questions[2] = new Multiple_Choice("<html>\"Local Man Wins Lottery Twice in One Week Using the Same Numbers\"<br/> What could you do to verify this story?</html>", 
-                        1, "headline", false, MC2, 2, "correct", "false");
+                        1, "headline", false, MC2, 2, "correct", "Incorrect");
                 questions[3] = new True_False("<html>\"Doctors Say Eating Ice Cream for Breakfast Improves Mental Performance\" <br/> True or False:This claim should be verified by checking the original scientific study before believing it."
                         , 4, "headline", true, true, "correct", "Try again.");
                 question.setText(questions[0].getQ());
@@ -289,6 +289,11 @@ public class QuestionPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_option4ActionPerformed
 
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
+        option1.setVisible(true);
+        option2.setVisible(true);
+        option3.setVisible(true);
+        option4.setVisible(true);
+        
         if (answerCorrect){
             score++;
         }
