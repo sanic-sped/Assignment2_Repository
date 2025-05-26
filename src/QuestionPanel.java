@@ -42,14 +42,22 @@ public class QuestionPanel extends javax.swing.JFrame {
                  * 
                  * I'd recommend storing all the success and fail messages into two arrays
                  */
-                String[] testMC = {"It cites multiple reputable scientific journals", 
-                    "It uses vague language like \"scientists say\" without naming them", 
+                String[] MC1 = {"It cites multiple reputable scientific journals",  
                     "It was published on a well-known medical journal's website", 
+                    "It uses vague language like \"scientists say\" without naming them",
                     "It includes interviews with licensed oncologists"};
-                questions[0] = new Multiple_Choice("\"Scientists discover that drinking 10 cups of coffee a day cures cancer\"", 1, "headline", false, testMC, 2, "correct", "false");
-                questions[1] = new True_False("\"NASA Confirms Earth Will Go Dark for 6 Days in November Due to Solar Storm\"", 2, "headline", true, true, "correct", "false");
-                questions[2] = new Multiple_Choice("\"Local Man Wins Lottery Twice in One Week Using the Same Numbers\"", 3, "headline", false, testMC, 2, "correct", "false");
-                questions[3] = new True_False("\"Doctors Say Eating Ice Cream for Breakfast Improves Mental Performance\"", 4, "headline", true, true, "correct", "false");
+                String[] MC2 = {"Check if it’s trending on TikTok", 
+                    "Look it up on Wikipedia", 
+                    "Search for local news outlets reporting the same story", 
+                    "Assume it’s fake because it sounds crazy"};
+                questions[0] = new Multiple_Choice("<html>\"Scientists discover that drinking 10 cups of coffee a day cures cancer\" <br/> Which of the following is a red flag that this news might be fake? </html", 
+                        1, "headline", false, MC1, 2, "correct", "Incorrect");
+                questions[1] = new True_False("<html>\"NASA Confirms Earth Will Go Dark for 6 Days in November Due to Solar Storm\" <br/> True or False: NASA regularly issues warnings that Earth will be completely dark for several days.",
+                        2, "headline", true, false, "correct", "<html>This is a recurring fake news claim. NASA has repeatedly debunked such <br/> rumors.</html>");
+                questions[2] = new Multiple_Choice("<html>\"Local Man Wins Lottery Twice in One Week Using the Same Numbers\"<br/> What could you do to verify this story?</html>", 
+                        1, "headline", false, MC2, 2, "correct", "false");
+                questions[3] = new True_False("<html>\"Doctors Say Eating Ice Cream for Breakfast Improves Mental Performance\" <br/> True or False:This claim should be verified by checking the original scientific study before believing it."
+                        , 4, "headline", true, true, "correct", "Try again.");
                 question.setText(questions[0].getQ());
                 if (questions[0] instanceof Multiple_Choice){
                     option1.setText(((Multiple_Choice) questions[0]).getChoices()[0]);
@@ -87,7 +95,8 @@ public class QuestionPanel extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        question.setText("\"Scientists discover that drinking 10 cups of coffee a day cures cancer.\" ");
+        question.setText("<html>\"Scientists discover that drinking 10 cups of coffee a day cures cancer.\"  <br/> Which of the following is a red flag that this news might be fake? </html");
+        question.setToolTipText("");
 
         back.setText("Back to Title");
         back.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +119,7 @@ public class QuestionPanel extends javax.swing.JFrame {
             }
         });
 
-        message.setText("Placeholder reason & sources");
+        message.setText("Did you answer correctly?");
 
         option1.setText("Choice 1");
         option1.addActionListener(new java.awt.event.ActionListener() {
@@ -143,6 +152,7 @@ public class QuestionPanel extends javax.swing.JFrame {
                     .addComponent(question, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(message, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(option2)
                             .addComponent(option1)
                             .addGroup(layout.createSequentialGroup()
@@ -150,8 +160,7 @@ public class QuestionPanel extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(next))
                             .addComponent(option3)
-                            .addComponent(option4)
-                            .addComponent(message, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(option4))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -168,8 +177,8 @@ public class QuestionPanel extends javax.swing.JFrame {
                 .addComponent(option3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(option4)
-                .addGap(37, 37, 37)
-                .addComponent(message, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71)
+                .addComponent(message, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(back)

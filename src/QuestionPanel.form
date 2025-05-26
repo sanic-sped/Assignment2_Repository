@@ -23,12 +23,13 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="question" alignment="0" pref="488" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="message" min="-2" pref="453" max="-2" attributes="0"/>
                           <Component id="option2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="option1" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
@@ -38,7 +39,6 @@
                           </Group>
                           <Component id="option3" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="option4" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="message" alignment="0" min="-2" pref="370" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -60,8 +60,8 @@
               <Component id="option3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="option4" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-              <Component id="message" min="-2" pref="159" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+              <Component id="message" min="-2" pref="125" max="-2" attributes="0"/>
               <EmptySpace pref="16" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="back" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -75,7 +75,8 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="question">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&quot;Scientists discover that drinking 10 cups of coffee a day cures cancer.&quot; "/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&quot;Scientists discover that drinking 10 cups of coffee a day cures cancer.&quot;  &lt;br/&gt; Which of the following is a red flag that this news might be fake? &lt;/html"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="back">
@@ -104,7 +105,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="message">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Placeholder reason &amp; sources"/>
+        <Property name="text" type="java.lang.String" value="Did you answer correctly?"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="option1">
