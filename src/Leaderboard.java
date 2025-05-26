@@ -18,6 +18,9 @@ public class Leaderboard {
         this.userScores = userScores;
         this.highScore = highScore;
     }
+    /**
+     * Constructor class that builds a new leaderboard object from the leaderboard database
+     */
     public Leaderboard(){
         int lines = countLines("leaderboard.txt");
         String[] data = readLines("leaderboard.txt", lines);
@@ -67,20 +70,38 @@ public class Leaderboard {
         }   
         return out;
     }
+    /**
+     * Method to write a new entry into the leaderboard
+     * @param newScore New score to write to the leaderboard
+     */
     public void writeNewScore(Score newScore){
         try (FileWriter w = new FileWriter(new File("leaderboard.txt"), true)){
+            //Initialize a Printwriter object
             PrintWriter write = new PrintWriter(w);
+            //Write to the database file
             write.printf("%s,%s,%s\n", newScore.getName(), newScore.getRegion(), newScore.getValue());
+            //Initialize a new userScores array
             Score[] newUserScores = new Score[this.getUserScores().length + 1];
+            //Initialize a new highScore variable
+            Score newHighScore = this.highScore;
+            //Copy the old userScores to the new userScores array
             for (int i = 0; i < this.getUserScores().length; i++){
                 newUserScores[i] = this.getUserScores()[i];
             }
+            //Add the new score
             newUserScores[this.getUserScores().length] = newScore;
+            //If the new score is higher than the current highScore, then make that the new highScore
+            if (newHighScore.getValue() < newScore.getValue()){
+                newHighScore = newScore;
+            }
+            //Update the variables
             this.userScores = newUserScores;
+            this.highScore = newHighScore;
         } catch(IOException exception){
             System.out.println(exception);
         }
     }
+    //Getter and setter mathods
     public Score[] getUserScores(){
         return userScores;
     }
