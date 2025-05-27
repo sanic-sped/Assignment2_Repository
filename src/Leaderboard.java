@@ -79,7 +79,7 @@ public class Leaderboard {
             //Initialize a Printwriter object
             PrintWriter write = new PrintWriter(w);
             //Write to the database file
-            write.printf("%s,%s,%s\n", newScore.getName(), newScore.getRegion(), newScore.getValue());
+            write.printf(newScore.toString() + "\n");
             //Initialize a new userScores array
             Score[] newUserScores = new Score[this.getUserScores().length + 1];
             //Initialize a new highScore variable

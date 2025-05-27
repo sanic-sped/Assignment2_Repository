@@ -21,7 +21,7 @@ public class QuestionPanel extends javax.swing.JFrame {
     private Question[] questions = new Question[NUMQUESTIONS];
     private int currentQIndex = 0;
     private boolean answerCorrect;
-    public static int score;
+    private static int score;
     /**
      * Creates new form Question
      */
@@ -317,7 +317,13 @@ public class QuestionPanel extends javax.swing.JFrame {
             this.setVisible(false);
         }
     }//GEN-LAST:event_nextActionPerformed
-
+    //getter and setter methods for the score
+    public static int getScore(){
+        return score;
+    }
+    public static void setScore(int score){
+        QuestionPanel.score = score;
+    } 
     /**
      * @param args the command line arguments
      */

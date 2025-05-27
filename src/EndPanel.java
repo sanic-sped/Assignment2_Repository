@@ -21,7 +21,7 @@ public class EndPanel extends javax.swing.JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowActivated(WindowEvent e) {
-                result.setText(String.format("You got %d/%d questions correct", QuestionPanel.score, QuestionPanel.NUMQUESTIONS));
+                result.setText(String.format("You got %d/%d questions correct", QuestionPanel.getScore(), QuestionPanel.NUMQUESTIONS));
             }
         });
     }
@@ -125,7 +125,7 @@ public class EndPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_backActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        LeaderboardPanel.leaderboard.writeNewScore(new Score(name.getText(), region.getText(), QuestionPanel.score));
+        LeaderboardPanel.leaderboard.writeNewScore(new Score(name.getText(), region.getText(), QuestionPanel.getScore()));
     }//GEN-LAST:event_saveActionPerformed
 
     private void regionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regionActionPerformed
